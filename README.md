@@ -26,5 +26,5 @@ The final cell prints the vocabulary.
 - `TextRank.ipynb`: the code and short explanations.
 - `long_stopwords.txt`: common words to skip.
 - `requirements.txt`: Python packages.
-- `LICENSE`: the original MIT license.
+
 
