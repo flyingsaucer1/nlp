@@ -9,7 +9,7 @@ Use Python 3.11 or newer. Open a terminal in this folder and run:
 ```sh
 python -m pip install -r requirements.txt
 python -m nltk.downloader punkt_tab averaged_perceptron_tagger_eng wordnet stopwords
-python -m notebook TextRank.ipynb
+python -m notebook nlp.ipynb
 ```
 
 Run the notebook cells from top to bottom. Change `Text` to use your own paragraph.
@@ -23,7 +23,7 @@ The final cell prints the vocabulary.
 
 ## Files
 
-- `TextRank.ipynb`: the code and short explanations.
+- `nlp.ipynb`: the code and short explanations.
 - `requirements.txt`: Python packages.
 - `LICENSE`: the original MIT license.
 
