@@ -1,3 +1,2 @@
 nltk>=3.9,<4
-numpy>=1.26,<3
 notebook>=7,<8

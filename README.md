@@ -1,6 +1,6 @@
 # nlp
 
-A simple Python notebook that finds keywords using TextRank.
+A simple Python notebook that cleans text and creates a vocabulary of useful words.
 
 ## Run
 
@@ -13,14 +13,13 @@ python -m notebook TextRank.ipynb
 ```
 
 Run the notebook cells from top to bottom. Change `Text` to use your own paragraph.
-Change `keywords_num` to choose how many phrases to show.
+The final cell prints the vocabulary.
 
 ## What it does
 
 1. Cleans the text and finds base words.
 2. Removes common words.
-3. Connects nearby words and scores them.
-4. Combines words into phrases and shows the best ones.
+3. Keeps one copy of each remaining word in a vocabulary list.
 
 ## Files
 
@@ -29,5 +28,5 @@ Change `keywords_num` to choose how many phrases to show.
 - `requirements.txt`: Python packages.
 - `LICENSE`: the original MIT license.
 
-Adapted from Jishnu Ray Chowdhury's [TextRank-Keyword-Extraction](https://github.com/JRC1995/TextRank-Keyword-Extraction). Comments and explanations have been simplified, and a few boundary cases have been fixed.
+Adapted from Jishnu Ray Chowdhury's [TextRank-Keyword-Extraction](https://github.com/JRC1995/TextRank-Keyword-Extraction). This version stops after vocabulary creation and uses shorter explanations.
 The original sample paragraph is from “Automatic Keyword Extraction from Individual Documents.” The stopword list was sourced by the original project from ranks.nl.
