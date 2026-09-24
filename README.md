@@ -28,5 +28,3 @@ The final cell prints the vocabulary.
 - `requirements.txt`: Python packages.
 - `LICENSE`: the original MIT license.
 
-Adapted from Jishnu Ray Chowdhury's [TextRank-Keyword-Extraction](https://github.com/JRC1995/TextRank-Keyword-Extraction). This version stops after vocabulary creation and uses shorter explanations.
-The original sample paragraph is from “Automatic Keyword Extraction from Individual Documents.” The stopword list was sourced by the original project from ranks.nl.
