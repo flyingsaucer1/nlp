@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f8f4" />
+    <meta name="description" content="Explore the vocabulary in a piece of text with NLTK." />
+    <title>Vocabulary Studio · NLP</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="brand"><span class="brand-mark" aria-hidden="true">a<span>·</span>z</span><span>NLP<span class="brand-light"> / vocabulary</span></span></div>
+        <span class="header-note">A simple text workspace</span>
+      </header>
+
+      <main>
+        <div class="page-intro">
+          <span class="eyebrow"><span class="eyebrow-line"></span> TEXT ANALYSIS</span>
+          <h1>Find the words that matter.</h1>
+          <p>Explore the vocabulary in your text using NLTK. See word counts, unique words, and how often each one appears.</p>
+        </div>
+
+        <div class="workspace">
+          <section class="panel input-panel" aria-labelledby="input-title">
+            <div class="panel-heading"><div><span class="section-number">01</span><h2 id="input-title">Your text</h2></div><span class="panel-subtle">Start here</span></div>
+            <label class="field-label" for="text-input">Paste a paragraph or upload a .txt file</label>
+            <textarea id="text-input" maxlength="100000" spellcheck="true">Dogs and cats are playing in a bright garden. The dogs chase a red ball.</textarea>
+            <div class="input-meta"><span id="file-name">Using sample text</span><span id="character-count">0 / 100,000 characters</span></div>
+            <div class="input-actions">
+              <label class="upload-button" for="file-input"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3" /></svg> Upload .txt</label>
+              <input id="file-input" type="file" accept=".txt,text/plain" />
+              <button id="clear-button" class="text-button" type="button">Clear text</button>
+              <button id="analyze-button" class="primary-button" type="button">Analyze text <span aria-hidden="true">↗</span></button>
+            </div>
+            <p id="status" class="status" role="status" aria-live="polite">Ready to analyze.</p>
+          </section>
+
+          <section class="panel results-panel" aria-labelledby="results-title">
+            <div class="panel-heading"><div><span class="section-number">02</span><h2 id="results-title">Results</h2></div><span class="panel-subtle">Your vocabulary</span></div>
+            <div class="stats">
+              <div class="stat"><span class="stat-label">TOTAL WORDS</span><strong id="total-words">—</strong><span class="stat-description">Alphabetic words in the text</span></div>
+              <div class="stat"><span class="stat-label">UNIQUE WORDS</span><strong id="unique-words">—</strong><span class="stat-description">After filtering and grouping</span></div>
+            </div>
+            <div class="result-block"><div class="result-heading"><h3>Vocabulary</h3><span>A–Z</span></div><div id="vocabulary" class="vocabulary empty-result">Run an analysis to see your words.</div></div>
+            <div class="result-block frequency-block"><div class="result-heading"><h3>Word frequency</h3><span>MOST COMMON FIRST</span></div><div id="frequencies" class="frequency-list empty-result">Counts will appear here.</div></div>
+          </section>
+        </div>
+        <p class="footnote">Uses NLTK to keep nouns, adjectives, and <span>–ing</span> words, then removes common English words.</p>
+      </main>
+      <footer>Vocabulary Studio <span>·</span> A small NLP project</footer>
+    </div>
+  </body>
+</html>
