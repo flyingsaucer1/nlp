@@ -25,13 +25,13 @@ function resetResults() {
   totalWords.textContent = '—';
   uniqueWords.textContent = '—';
   vocabulary.className = 'vocabulary empty-result';
-  vocabulary.textContent = '—';
+  vocabulary.textContent = 'Run an analysis to see your words.';
   frequencies.className = 'frequency-list empty-result';
-  frequencies.textContent = '—';
+  frequencies.textContent = 'Counts will appear here.';
   posTags.className = 'tag-list empty-result';
-  posTags.textContent = '—';
+  posTags.textContent = 'Tags will appear here.';
   entities.className = 'entity-list empty-result';
-  entities.textContent = '—';
+  entities.textContent = 'Entities will appear here.';
 }
 
 function renderResults(result) {
@@ -114,8 +114,8 @@ async function analyze() {
     return;
   }
   analyzeButton.disabled = true;
-  analyzeButton.textContent = 'Analyzing…';
-  showStatus('');
+  analyzeButton.firstChild.textContent = 'Analyzing… ';
+  showStatus('Analyzing your text…');
   try {
     const response = await fetch('/api/analyze', {
       method: 'POST',
@@ -125,17 +125,17 @@ async function analyze() {
     const result = await response.json();
     if (!response.ok) throw new Error(result.error || 'Analysis failed. Please try again.');
     renderResults(result);
-    showStatus('Analysis complete.');
+    showStatus(`Done. Found ${result.uniqueWords} unique vocabulary words.`);
   } catch (error) {
     showStatus(error.message || 'Analysis failed. Please try again.', true);
   } finally {
     analyzeButton.disabled = false;
-    analyzeButton.textContent = 'Analyze';
+    analyzeButton.firstChild.textContent = 'Analyze text ';
   }
 }
 
 textInput.addEventListener('input', () => {
-  fileName.textContent = '';
+  fileName.textContent = 'Typed text';
   updateCount();
 });
 textInput.addEventListener('keydown', (event) => {
@@ -161,15 +161,15 @@ fileInput.addEventListener('change', async () => {
   fileName.textContent = file.name;
   updateCount();
   resetResults();
-  showStatus('');
+  showStatus('File loaded. Ready to analyze.');
 });
 clearButton.addEventListener('click', () => {
   textInput.value = '';
   fileInput.value = '';
-  fileName.textContent = '';
+  fileName.textContent = 'No file selected';
   updateCount();
   resetResults();
-  showStatus('');
+  showStatus('Text cleared.');
   textInput.focus();
 });
 analyzeButton.addEventListener('click', analyze);
