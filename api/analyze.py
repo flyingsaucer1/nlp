@@ -2,6 +2,7 @@ import json
 import logging
 import threading
 import zipfile
+from collections import Counter
 from http.server import BaseHTTPRequestHandler
 from pathlib import Path
 
@@ -34,14 +35,21 @@ def prepare_nltk_data():
 
 def analyze_text(text):
     prepare_nltk_data()
-    tokens = nltk.word_tokenize(text.lower())
+    tokens = nltk.word_tokenize(text)
     total_words = sum(token.isalpha() for token in tokens)
     tagged_words = nltk.pos_tag(tokens)
+    tag_counts = Counter(tag for word, tag in tagged_words if word.isalpha())
+    entity_tree = nltk.ne_chunk(tagged_words, binary=False)
+    entities = []
+    for node in entity_tree:
+        if hasattr(node, "label"):
+            entities.append({"text": " ".join(word for word, tag in node.leaves()), "label": node.label()})
     common_words = set(stopwords.words("english"))
     lemmatizer = WordNetLemmatizer()
     frequencies = FreqDist()
 
-    for word, tag in tagged_words:
+    for original_word, tag in tagged_words:
+        word = original_word.lower()
         if not word.isalpha():
             continue
         if tag.startswith("NN"):
@@ -66,6 +74,8 @@ def analyze_text(text):
                 frequencies.items(), key=lambda item: (-item[1], item[0])
             )
         ],
+        "posTags": [{"tag": tag, "count": count} for tag, count in sorted(tag_counts.items(), key=lambda item: (-item[1], item[0]))],
+        "entities": entities,
     }
 
 
