@@ -109,6 +109,6 @@ class handler(BaseHTTPRequestHandler):
             self.respond(200, analyze_text(text))
         except (ValueError, json.JSONDecodeError):
             self.respond(400, {"error": "Send valid JSON text."})
-        except Exception:
+        except Exception as exc:
             logging.exception("Text analysis failed")
-            self.respond(500, {"error": "Analysis failed. Please try again."})
+            self.respond(500, {"error": f"{type(exc).__name__}: {str(exc)[:500]}"})
